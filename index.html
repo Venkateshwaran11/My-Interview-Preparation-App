@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f1f8f6">
+  <title>InterviewForge | Daily Interview Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">⚡ InterviewForge</div>
+      <p class="muted">YOUR CAREER WORKOUT</p>
+      <nav>
+        <button class="nav-link active" data-view="home">⌂ Home</button>
+        <button class="nav-link" data-view="practice">◎ Skill Practice</button>
+        <button class="nav-link" data-view="dsa">⌘ DSA Code Lab</button>
+        <button class="nav-link" data-view="settings">⚙ AI Settings</button>
+      </nav>
+      <div class="sidebar-note">
+        <strong>Small steps. Strong skills.</strong>
+        <p>One topic at a time. Take breaks whenever you need them.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
+        <div>
+          <div class="eyebrow">YOUR DAILY PRACTICE SPACE</div>
+          <h1 id="pageTitle">Good progress starts small.</h1>
+        </div>
+        <button class="soft-btn" id="focusBtn">Focus mode</button>
+      </header>
+
+      <section id="homeView" class="view">
+        <div class="hero">
+          <div>
+            <span class="pill">TODAY'S MISSION</span>
+            <h2>Become interview-ready,<br>one question at a time.</h2>
+            <p>Practice real-world questions matched to your skills and experience.</p>
+            <button class="primary-btn" id="startDaily">Start today's practice →</button>
+          </div>
+          <div class="hero-symbol" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="stats">
+          <article class="stat-card">
+            <span>Questions answered</span>
+            <strong id="answeredCount">0</strong>
+            <small>Your practice history</small>
+          </article>
+          <article class="stat-card">
+            <span>Current skill</span>
+            <strong id="currentSkill">JavaScript</strong>
+            <small>Change it anytime</small>
+          </article>
+          <article class="stat-card">
+            <span>Daily goal</span>
+            <strong>5 questions</strong>
+            <small>Quality over quantity</small>
+          </article>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">PICK UP WHERE YOU LEFT OFF</div>
+            <h2>Choose a skill</h2>
+          </div>
+        </div>
+        <div class="skill-grid" id="skillGrid"></div>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">DAILY AI PRACTICE</div>
+              <h2 id="dailyTopic">JavaScript fundamentals</h2>
+            </div>
+            <span class="pill">5 questions</span>
+          </div>
+          <p class="muted">Generate questions, answer in your own words, then reveal the answer guide.</p>
+          <button class="primary-btn" id="generateBtn">Generate questions with Groq AI</button>
+          <div id="questionArea" class="question-list"></div>
+        </section>
+      </section>
+
+      <section id="practiceView" class="view hidden">
+        <section class="panel">
+          <div class="eyebrow">FOCUSED LEARNING</div>
+          <h2>Practice a specific skill</h2>
+          <p class="muted">Select the technology and difficulty that match your interview goal.</p>
+          <div class="form-grid">
+            <label>Skill
+              <select id="skillSelect">
+                <option>JavaScript</option><option>Angular</option><option>React</option>
+                <option>Vue</option><option>HTML & CSS</option><option>Node.js</option>
+                <option>NestJS</option><option>Java</option><option>Python</option>
+                <option>MySQL</option><option>MongoDB</option><option>System Design</option>
+                <option>RAG & GenAI</option><option>DSA</option>
+              </select>
+            </label>
+            <label>Experience
+              <select id="experienceSelect">
+                <option>1-2 years</option><option selected>3-5 years</option>
+                <option>6+ years</option>
+              </select>
+            </label>
+            <label>Difficulty
+              <select id="difficultySelect">
+                <option>Easy</option><option selected>Medium</option><option>Hard</option>
+              </select>
+            </label>
+            <label>Company type
+              <select id="companySelect">
+                <option>MNC</option><option>Startup</option><option>Product company</option>
+              </select>
+            </label>
+          </div>
+          <button class="primary-btn" id="skillGenerateBtn">Create my interview questions</button>
+          <div id="skillQuestionArea" class="question-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div><div class="eyebrow">OPTIONAL TIME CHALLENGE</div><h2>Practice timer</h2></div>
+          </div>
+          <div class="timer" id="timerDisplay">15:00</div>
+          <div class="button-row">
+            <button class="primary-btn" id="timerStart">Start</button>
+            <button class="soft-btn" id="timerPause">Pause</button>
+            <button class="soft-btn" id="timerReset">Reset</button>
+          </div>
+          <p class="muted">The timer counts down. You can pause or reset it whenever you need a break.</p>
+        </section>
+      </section>
+
+      <section id="dsaView" class="view hidden">
+        <section class="panel">
+          <div class="eyebrow">PROBLEM SOLVING</div>
+          <h2>DSA Code Lab</h2>
+          <p class="muted">Choose a problem, write JavaScript, and run it against sample tests.</p>
+          <label>Problem
+            <select id="problemSelect">
+              <option value="twoSum">Two Sum</option>
+              <option value="duplicates">Find duplicates</option>
+              <option value="frequency">Character frequency</option>
+              <option value="palindrome">Palindrome check</option>
+              <option value="thirdLargest">Third-largest distinct number</option>
+            </select>
+          </label>
+          <div class="problem-description" id="problemDescription"></div>
+          <label for="codeEditor">JavaScript editor</label>
+          <textarea id="codeEditor" class="code-editor" spellcheck="false" autocapitalize="off"></textarea>
+          <div class="button-row">
+            <button class="primary-btn" id="runCode">▶ Run code</button>
+            <button class="soft-btn" id="resetCode">Reset code</button>
+          </div>
+          <div class="output-panel">
+            <strong>Output</strong>
+            <pre id="codeOutput">Your output will appear here.</pre>
+          </div>
+          <p class="muted">This basic editor runs JavaScript only. Avoid pasting untrusted code. For production use, execute code in a separate sandboxed environment.</p>
+        </section>
+      </section>
+
+      <section id="settingsView" class="view hidden">
+        <section class="panel">
+          <div class="eyebrow">AI CONFIGURATION</div>
+          <h2>Connect Groq</h2>
+          <p class="muted">Get an API key from the Groq Console. For local personal testing only, enter it below. A browser-based key can be exposed; use a backend proxy for a deployed app.</p>
+          <label>Groq API key
+            <input type="password" id="apiKeyInput" placeholder="gsk_..." autocomplete="off">
+          </label>
+          <label>Model
+            <input id="modelInput" value="llama-3.3-70b-versatile">
+          </label>
+          <button class="primary-btn" id="saveSettings">Save for this tab</button>
+          <p id="settingsMessage" role="status" class="muted"></p>
+        </section>
+      </section>
+
+      <footer>InterviewForge · Practice at your pace · Remember to take breaks</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
